@@ -1,8 +1,9 @@
 <?php
+// News.php controller
 class News extends CI_Controller {
 
 	public function __construct()
-	{
+	{//everything here is global to all methods in the controller
 		parent::__construct();
 		$this->load->model('news_model');
 		$this->config->set_item('banner','News Banner');
@@ -12,12 +13,7 @@ class News extends CI_Controller {
 	{
 		$data['news'] = $this->news_model->get_news();
 		$data['title'] = 'News archive';
-		
-		//$this->config->set_item('banner','News Banner');
-
-		//$this->load->view('templates/header', $data);
 		$this->load->view('news/index', $data);
-		//$this->load->view('templates/footer');
 	}//End index function
 
 	public function view($slug = NULL)
@@ -28,12 +24,8 @@ class News extends CI_Controller {
 		{
 			show_404();
 		}
-
 		$data['title'] = $data['news_item']['title'];
-
-		//$this->load->view('templates/header', $data);
 		$this->load->view('news/view', $data);
-		//$this->load->view('templates/footer');
 	}//End views function
 
 	public function create()
@@ -48,10 +40,9 @@ class News extends CI_Controller {
 
 		if ($this->form_validation->run() === FALSE)
 		{
-			$this->load->view('templates/header', $data);
+			//$this->load->view('templates/header', $data);
 			$this->load->view('news/create', $data);
-			$this->load->view('templates/footer', $data);
-
+			//$this->load->view('templates/footer', $data);
 		}
 		else
 		{
