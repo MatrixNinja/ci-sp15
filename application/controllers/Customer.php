@@ -1,6 +1,6 @@
 <?php
 /**
- * Customer.php controller for a generic customer
+ * Customer.php controller for a generic Customer
  * 
  * Used to show how to do CRUD in CodeIgniter
  * 
@@ -19,14 +19,11 @@
  * Customer controller for the CRUD demo
  * 
  * @see Customer_model
- * @see Answer
  * @todo none
  */
 class Customer extends CI_Controller {
 /**
- * __construct() Loads default data into the object
- * 
- * Added in v3 - Result object
+ * Loads default data into the object
  * 
  * @param none
  * @return void
@@ -35,8 +32,8 @@ class Customer extends CI_Controller {
 	public function __construct()
 	{//everything here is global to all methods in the controller
 		parent::__construct();
-		//$this->load->model('news_model');
-		//$this->config->set_item('banner','Rss Banner');
+		$this->load->model('customer_model');
+		$this->config->set_item('banner','Global Customer Banner');
 	}//End __construct function
 
 /**
@@ -48,7 +45,12 @@ class Customer extends CI_Controller {
  */
 	public function index()
 	{
-//		$data['rss'] = $this->news_model->get_news();
+		//$data['rss'] = $this->news_model->get_news();
+		
+		$data ['query'] = $this->customer_model->get_customers();
+		//var_dump($data);
+		//die;
+		
 		$data['title'] = 'Customer';
 		$this->load->view('customer/index', $data);	
 	}//End index function
